@@ -18,7 +18,7 @@ angular.module('starter.controllers', [])
     console.log($scope.quests);
     $rootScope.twilioDigits = '';
     $rootScope.addTwilioDigit = function(digit){
-      $rootScope.twilioDigits += digit.toString();
+      $rootScope.twilioDigits += (digit+1).toString();
     }
   });
 })
