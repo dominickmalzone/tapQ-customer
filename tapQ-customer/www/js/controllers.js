@@ -18,11 +18,15 @@ angular.module('starter.controllers', [])
     console.log($scope.quests);
     $rootScope.twilioDigits = '';
     $rootScope.addTwilioDigit = function(digit){
+<<<<<<< HEAD
       $rootScope.twilioDigits += digit.toString();
       var userRef = firebaseRef.child("user");
               userRef.update({
                  "time": digit //ignore
               });
+=======
+      $rootScope.twilioDigits += (digit+1).toString();
+>>>>>>> ce503e23ddecd8a96d5a8d40725cd5fc5ca74219
     }
   });
 })
