@@ -17,9 +17,18 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
+.controller('FirstListCtrl', function($scope, $firebase, $stateParams, $ionicLoading){
+  var firebaseRef = new Firebase("https://qtap.firebaseio.com/");
+  firebaseRef.once('value', function(dataSnapshot){
+    //var quest = dataSnapshot.val();
+    $scope.quests = dataSnapshot.val().q;
+    console.log($scope.quests);
+  });
+})
+
 .controller('AccountCtrl', function($scope, $firebase, $ionicLoading, $ionicPopup) {
   var firebaseRef = new Firebase("https://qtap.firebaseio.com");
-  console.log(firebaseRef);
+  //console.log(firebaseRef);
 
     $scope.showAlert = function() {
     $ionicPopup.alert({

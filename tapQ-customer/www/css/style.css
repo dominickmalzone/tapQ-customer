@@ -19,3 +19,13 @@
 .bill{
 	height: 100px;
 }
+
+.move{
+	position: absolute;
+	left: 23px;
+	top: 28px;
+	margin-bottom: auto;
+	margin-top: auto;
+	z-index: 1;
+	color: white;
+}

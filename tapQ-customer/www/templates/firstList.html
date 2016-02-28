@@ -1,1 +1,15 @@
-<!-- havent done -->
+<ion-view view-title="chase.name">
+  <ion-content>
+	<ion-list>
+		<center>Tap what you need to get connected to the operator</center>
+     <ion-item
+         class="item item-icon-left" 
+           ng-repeat="(key, value) in quests"
+           href="#/tab/quests/{{quest.name}}">
+           <h2 class="move">{{key}}</h2><p>{{value}}</p>
+           <p>Press</p>
+          <i class="icon ion-record"></i>
+     </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -59,12 +59,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+    .state('tab.list', {
+      url: '/call/list',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-call': {
+          templateUrl: 'templates/firstList.html',
+          controller: 'FirstListCtrl'
         }
       }
     })
