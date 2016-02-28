@@ -38,11 +38,14 @@ angular.module('starter.controllers', [])
   });
 })
 
-.controller('ConnectCtrl', function($scope,  $stateParams, $firebase, $rootScope) {
+.controller('ConnectCtrl', function($scope,  $stateParams, $firebase, $rootScope, $http) {
    var firebaseRef = new Firebase("https://qtap.firebaseio.com/user");
     firebaseRef.once('value', function(dataSnapshot){
 
       console.log("FINAL DIGITS: " + $rootScope.twilioDigits);
+      $http.get("http://localhost:3000/callAndInput/" + $rootScope.twilioDigits);
+      // reset
+      $rootScope.twilioDigits = '';
     $scope.total = dataSnapshot.val();
 
     $rootScope.bill = dataSnapshot.val().bill;
