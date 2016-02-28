@@ -19,6 +19,10 @@ angular.module('starter.controllers', [])
     $rootScope.twilioDigits = '';
     $rootScope.addTwilioDigit = function(digit){
       $rootScope.twilioDigits += digit.toString();
+      var userRef = firebaseRef.child("user");
+              userRef.update({
+                 "time": digit //ignore
+              });
     }
   });
 })
@@ -44,6 +48,10 @@ angular.module('starter.controllers', [])
 
       console.log("FINAL DIGITS: " + $rootScope.twilioDigits);
       $http.get("http://localhost:3000/callAndInput/" + $rootScope.twilioDigits);
+      
+    
+
+
       // reset
       $rootScope.twilioDigits = '';
     $scope.total = dataSnapshot.val();
@@ -59,7 +67,7 @@ angular.module('starter.controllers', [])
 
     $scope.first = dataSnapshot.val().firstname;
     console.log($scope.first);
-//I havent slept all weekend so fuck off Ill do what i want
+
 
   });
 })
@@ -87,8 +95,7 @@ angular.module('starter.controllers', [])
       "bill": lastName,
       "email": bill,
       "firstname": email,
-      "lastname": firstName,
-      "time": 7 //ignore
+      "lastname": firstName
     });
  $scope.showAlert();
  }
