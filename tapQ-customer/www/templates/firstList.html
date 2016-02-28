@@ -3,9 +3,10 @@
 	<ion-list>
 		<center>Tap what you need to get connected to the operator</center>
      <ion-item
-         class="item item-icon-left" 
+         class="item item-icon-left"
            ng-repeat="(key, value) in quests"
-           href="#/tab/call/list/" + q + "{{key}}">
+           ng-click="addTwilioDigit(key)"
+           href="#/tab/call/list/q{{key}}">
            <h2 class="move">{{key}}</h2><p>{{value}}</p>
           <i class="icon ion-record"></i>
      </ion-item>

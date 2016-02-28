@@ -2,8 +2,9 @@
   <ion-content>
 	<ion-list>
      <ion-item
-         class="item item-icon-left" 
+         class="item item-icon-left"
            ng-repeat="(key, value) in questions"
+           ng-click="addTwilioDigit(key)"
            href="#/tab/connect">
            <p>{{value}}</p>
      </ion-item>

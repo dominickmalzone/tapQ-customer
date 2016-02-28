@@ -10,18 +10,22 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })//garbage, ignore
 
-.controller('FirstListCtrl', function($scope, $firebase, $stateParams, $ionicLoading){
+.controller('FirstListCtrl', function($scope, $rootScope, $firebase, $stateParams, $ionicLoading){
   var firebaseRef = new Firebase("https://qtap.firebaseio.com/");
   firebaseRef.once('value', function(dataSnapshot){
     //var quest = dataSnapshot.val();
     $scope.quests = dataSnapshot.val().q;
     console.log($scope.quests);
+    $rootScope.twilioDigits = '';
+    $rootScope.addTwilioDigit = function(digit){
+      $rootScope.twilioDigits += digit.toString();
+    }
   });
 })
 
-.controller('SecondListCtrl', function($scope, $firebase, $stateParams, $ionicLoading){
+.controller('SecondListCtrl', function($scope, $rootScope, $firebase, $stateParams, $ionicLoading){
   console.log($stateParams.value);
-
+    console.log("DIGITS: " + $rootScope.twilioDigits);
   var firebaseRef = new Firebase("https://qtap.firebaseio.com/q/8/" + $stateParams.value);
   firebaseRef.once('value', function(dataSnapshot){
     $scope.questions = dataSnapshot.val();
@@ -34,11 +38,15 @@ angular.module('starter.controllers', [])
   });
 })
 
-.controller('ConnectCtrl', function($scope, $stateParams, $firebase, $rootScope) {
+.controller('ConnectCtrl', function($scope,  $stateParams, $firebase, $rootScope, $http) {
    var firebaseRef = new Firebase("https://qtap.firebaseio.com/user");
     firebaseRef.once('value', function(dataSnapshot){
-    
-    $scope.total = dataSnapshot.val();  
+
+      console.log("FINAL DIGITS: " + $rootScope.twilioDigits);
+      $http.get("http://localhost:3000/callAndInput/" + $rootScope.twilioDigits);
+      // reset
+      $rootScope.twilioDigits = '';
+    $scope.total = dataSnapshot.val();
 
     $rootScope.bill = dataSnapshot.val().bill;
     console.log($scope.bill);
@@ -76,7 +84,7 @@ angular.module('starter.controllers', [])
     $scope.bill = email;
     var userRef = firebaseRef.child("user");
     userRef.set({
-      "bill": lastName,    
+      "bill": lastName,
       "email": bill,
       "firstname": email,
       "lastname": firstName,
