@@ -1,21 +1,14 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {})
-
+//trash
 .controller('CallCtrl', function($scope) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //DELETE CHATS SERVICE___________________________________________________
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
+//trash
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);
-})
+})//garbage, ignore
 
 .controller('FirstListCtrl', function($scope, $firebase, $stateParams, $ionicLoading){
   var firebaseRef = new Firebase("https://qtap.firebaseio.com/");
@@ -26,6 +19,45 @@ angular.module('starter.controllers', [])
   });
 })
 
+.controller('SecondListCtrl', function($scope, $firebase, $stateParams, $ionicLoading){
+  console.log($stateParams.value);
+
+  var firebaseRef = new Firebase("https://qtap.firebaseio.com/q/8/" + $stateParams.value);
+  firebaseRef.once('value', function(dataSnapshot){
+    $scope.questions = dataSnapshot.val();
+    console.log($scope.questions);
+ //firebaseRef.once('value', function(dataSnapshot){
+   // var question = dataSnapshot.val();
+   // console.log(question);
+   //$scope.questions = dataSnapshot.val();
+    //console.log($scope.questions);
+  });
+})
+
+.controller('ConnectCtrl', function($scope, $stateParams, $firebase, $rootScope) {
+   var firebaseRef = new Firebase("https://qtap.firebaseio.com/user");
+    firebaseRef.once('value', function(dataSnapshot){
+    
+    $scope.total = dataSnapshot.val();  
+
+    $rootScope.bill = dataSnapshot.val().bill;
+    console.log($scope.bill);
+
+    $scope.email = dataSnapshot.val().email;
+    console.log($scope.email);
+
+    $scope.last = dataSnapshot.val().lastname;
+    console.log($scope.last);
+
+    $scope.first = dataSnapshot.val().firstname;
+    console.log($scope.first);
+//I havent slept all weekend so fuck off Ill do what i want
+
+  });
+})
+
+
+
 .controller('AccountCtrl', function($scope, $firebase, $ionicLoading, $ionicPopup) {
   var firebaseRef = new Firebase("https://qtap.firebaseio.com");
   //console.log(firebaseRef);
@@ -33,21 +65,21 @@ angular.module('starter.controllers', [])
     $scope.showAlert = function() {
     $ionicPopup.alert({
       title: 'Success',
-      content: 'Profile updated!'
+      content: 'Profile Updated!'
     })
   };
 
-  $scope.submitForm = function(firstName, lastName, bill, email) {
-    $scope.firstName = firstName;
-    $scope.lastName = lastName;
-    $scope.email = email;
-    $scope.bill = bill;
+  $scope.submitForm = function(bill, email, firstName, lastName) {
+    $scope.firstName = lastName;
+    $scope.lastName = bill;
+    $scope.email = firstName;
+    $scope.bill = email;
     var userRef = firebaseRef.child("user");
     userRef.set({
-      "firstname": firstName,
-      "lastname": lastName,
-      "bill": bill,
-      "email": email,
+      "bill": lastName,    
+      "email": bill,
+      "firstname": email,
+      "lastname": firstName,
       "time": 7 //ignore
     });
  $scope.showAlert();

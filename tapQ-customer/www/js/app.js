@@ -68,6 +68,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
         }
       }
     })
+    
+    .state('tab.list-details', {
+      url: '/call/list/:value',
+      views: {
+        'tab-call': {
+          templateUrl: 'templates/secondList.html',
+          controller: 'SecondListCtrl'
+        }
+      }
+    })
+    .state('tab.connect', {
+      url: '/connect',
+      views: {
+        'tab-call': {
+          templateUrl: 'templates/connect.html',
+          controller: 'ConnectCtrl'
+        }
+      }
+    })
 
   .state('tab.account', {
     url: '/account',
