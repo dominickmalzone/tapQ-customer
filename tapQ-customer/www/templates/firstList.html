@@ -1,14 +1,13 @@
 <ion-view view-title="Chase">
   <ion-content>
 	<ion-list>
-		<center>Tap what you need to get connected to the operator</center>
+		<center>Tap what you need to get connected to the right operator</center>
      <ion-item
          class="item item-icon-left"
            ng-repeat="(key, value) in quests | limitTo:7:1"
            ng-click="addTwilioDigit(key)"
            href="#/tab/call/list/q{{key+1}}">
            <h2 class="move">{{key+1}}</h2><p>{{value}}</p>
-           <p>Press</p>
           <i class="icon ion-record"></i>
      </ion-item>
     </ion-list>
