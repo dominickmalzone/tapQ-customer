@@ -47,7 +47,7 @@ angular.module('starter.controllers', [])
     firebaseRef.once('value', function(dataSnapshot){
 
       console.log("FINAL DIGITS: " + $rootScope.twilioDigits);
-      $http.get("http://localhost:3000/callAndInput/" + $rootScope.twilioDigits);
+      $http.get("http://qtap-api.azurewebsites.net/callAndInput/" + $rootScope.twilioDigits);
 
 
 
@@ -96,6 +96,7 @@ angular.module('starter.controllers', [])
       "email": bill,
       "firstname": email,
       "lastname": firstName
+      //talk about confusing
     });
  $scope.showAlert();
  }
